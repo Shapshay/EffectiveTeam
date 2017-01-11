@@ -17,13 +17,13 @@ function openPopup(id) {
 
 
 <script>
-										$(document).ready(function() {
-											CKEDITOR.replace( 'description', {
-												filebrowserBrowseUrl: 'inc/ckfinder/ckfinder.html',
-												filebrowserUploadUrl: 'inc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-											} );
-										} );
-										</script>
+$(document).ready(function() {
+	CKEDITOR.replace( 'description', {
+		filebrowserBrowseUrl: 'inc/ckfinder/ckfinder.html',
+		filebrowserUploadUrl: 'inc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+	} );
+} );
+</script>
 										
 
 <script>
@@ -47,7 +47,7 @@ function edtVal(id){
 			if(obj.result=='OK'){
 				$('#item_id').val(id);
 				$('#name').val(obj.name);
-								CKEDITOR.instances['description'].setData(obj.description);
+				CKEDITOR.instances['description'].setData(obj.description);
 								
 				$('#tab2_link').click();
 			}

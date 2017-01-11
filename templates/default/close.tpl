@@ -11,7 +11,7 @@
 	$("#tmp_name").hide();
 </script>
 <img src="images/logo.png" alt="MACS" style="margin-top: 30px;"><br>
-<h1>Вход в центр аналитики</h1>
+<h1>Вход в менеджер задач</h1>
 {REG}
 </body>
 </html>

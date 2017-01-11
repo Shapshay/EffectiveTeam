@@ -23,7 +23,7 @@
 <button type="button" onclick="PageOK();" id="ok_page" class="top_btn btn_ok_page">Доставлен</button>
 <button type="button" onclick="PageErr();" id="err_page" class="top_btn btn_err_page">Ошибка</button><br>
 <img src="images/logo.png" alt="Mobile Delivery"><br>
-<h1>Mobile Delivery</h1>
+<h1>TEAM 1.0</h1>
 <div class="parent2">
 	<div class="block">
 			<b>Здравствуйте<br>{HELLO}</b>

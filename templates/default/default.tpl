@@ -55,7 +55,7 @@
 
 			<h1 id="sidebar-title" align="center">
 				<a href="/"><img src="images/logo.png" alt="Perch 1.0" width="100" /></a><br>
-				<a href="#">MACS 1.0</a></h1>
+				<a href="#">TEAM 1.0</a></h1>
 
 			<!-- Sidebar Profile links -->
 			<div id="profile-links">
@@ -89,7 +89,7 @@
 
 		<div id="footer">
 			<small> <!-- Remove this notice or replace it with whatever you want -->
-				&#169; Copyright 2016 Авто Клуб Казахстана | <a href="#">Top</a>
+				&#169; Copyright 2017 Авто Клуб Казахстана | <a href="#">Top</a>
 			</small>
 		</div><!-- End #footer -->
 		<input type="hidden" id="copy_page" value="0">
