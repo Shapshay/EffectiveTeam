@@ -21,10 +21,11 @@
 			<thead>
 				<tr>
 				   <th>ID</th>
+                    <th>Департамент</th>
 				   <th>Имя</th>
-									<th>Логин</th>
-									<th>Стартовая страница</th>
-									
+					<th>Логин</th>
+					<th>Стартовая страница</th>
+                    <th>Действия</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,7 +40,13 @@
 	
 		<form method="post" enctype="multipart/form-data" name="s_s">
 			<fieldset>
-			<p>
+            <p>
+                <label>Департамент</label>
+                <select name="d_id" id="d_id" class="small-input">
+                    {U_DEP_ROWS}
+                </select>
+            </p>
+            <p>
 			<label>Имя</label>
 			<input class="text-input medium-input" type="text" id="name" name="name" value="" />
 			</p>

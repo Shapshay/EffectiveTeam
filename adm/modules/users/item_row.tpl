@@ -1,5 +1,6 @@
 <tr>
 	<td>{ITEM_ID}</td>
+	<td>{EDT_DEP}</td>
 	<td>{EDT_NAME}</td>
 									<td>{EDT_LOGIN}</td>
 									<td>{EDT_PAGE_ID}</td>

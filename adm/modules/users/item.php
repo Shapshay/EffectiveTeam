@@ -11,6 +11,7 @@ if(isset($_POST['id'])){
 	if ($numRows > 0) {
 		$out_row['result'] = 'OK';
 		$out_row['name'] = $row['name'];
+		$out_row['d_id'] = $row['d_id'];
 		$out_row['login'] = $row['login'];
 		$out_row['password'] = $row['password'];
 		$out_row['page_id'] = $row['page_id'];

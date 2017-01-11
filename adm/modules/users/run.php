@@ -8,6 +8,7 @@ $tpl->define(array(
         $moduleName . "item_row" => $prefix . "item_row.tpl",
         $moduleName . "u_page_row" => $prefix . "u_page_row.tpl",
         $moduleName . "u_role_row" => $prefix . "u_role_row.tpl",
+        $moduleName . "u_dep_row" => $prefix . "u_dep_row.tpl",
 ));
 # MAIN #################################################################################
 
@@ -30,6 +31,7 @@ else{
                     "name" => $_POST['name'],
                     "login" => $_POST['login'],
                     "password" => $_POST['password'],
+                    "d_id" => $_POST['d_id'],
                     "page_id" => $_POST['page_id']));
                 break;
             }
@@ -38,6 +40,7 @@ else{
                     "name" => $_POST['name'],
                     "login" => $_POST['login'],
                     "password" => $_POST['password'],
+                    "d_id" => $_POST['d_id'],
                     "page_id" => $_POST['page_id']));
                 break;
             }
@@ -52,8 +55,10 @@ else{
 $rows = $dbc->dbselect(array(
             "table"=>"users",
             "select"=>"users.*, 
-            pages.title as title",
-            "joins"=>"LEFT OUTER JOIN pages ON users.page_id = pages.id"
+            pages.title as title,
+            departaments.title as dep",
+            "joins"=>"LEFT OUTER JOIN pages ON users.page_id = pages.id
+                LEFT OUTER JOIN departaments ON users.d_id = departaments.id"
             )
         );
 $numRows = $dbc->count;
@@ -61,6 +66,7 @@ if ($numRows > 0) {
     foreach($rows as $row){
         $tpl->assign("ITEM_ID", $row['id']);
         $tpl->assign("EDT_NAME", $row['name']);
+        $tpl->assign("EDT_DEP", $row['dep']);
         $tpl->assign("EDT_LOGIN", $row['login']);
         $tpl->assign("EDT_PASSWORD", $row['password']);
         $tpl->assign("EDT_PAGE_ID", $row['title']);
@@ -87,6 +93,18 @@ foreach($rows as $row){
     $tpl->assign("U_PAGE_NAME", $row['title']);
 
     $tpl->parse("U_PAGE_PAGE_ROWS", ".".$moduleName."u_page_row");
+}
+
+$rows = $dbc->dbselect(array(
+        "table"=>"departaments",
+        "select"=>" id, title"
+    )
+);
+foreach($rows as $row){
+    $tpl->assign("U_DEP_ID", $row['id']);
+    $tpl->assign("U_DEP_NAME", $row['title']);
+
+    $tpl->parse("U_DEP_ROWS", ".".$moduleName."u_dep_row");
 }
 
 
