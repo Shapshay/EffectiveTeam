@@ -11,13 +11,13 @@ require_once('adm/inc/simple_html_dom.php');
 
 function getRootID($usrname) {
 	global $dbc;
-	$resp = $dbc->element_find_by_field('roots','login',$usrname);
+	$resp = $dbc->element_find_by_field('users','login',$usrname);
 	return $resp['id'];
 }
 
 function getRootName($usrname) {
 	global $dbc;
-	$resp = $dbc->element_find_by_field('roots','login',$usrname);
+	$resp = $dbc->element_find_by_field('users','login',$usrname);
 	return $resp['name'];
 }
 

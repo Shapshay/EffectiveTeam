@@ -37,6 +37,9 @@
 	<script type="text/javascript" src="inc/will_pickdate/jquery.mousewheel.js"></script>
 	<script type="text/javascript" src="inc/will_pickdate/will_pickdate.js"></script>
 
+    <!-- File Upload -->
+    <script language="javascript" type="text/javascript" src="js/ajaxfileupload.js"></script>
+
     {AUTH}
 	{META}
 	{META_HTML}
@@ -59,7 +62,8 @@
 
 			<!-- Sidebar Profile links -->
 			<div id="profile-links">
-				Здравствуйте, <a href="system.php?menu=777" title="Редактирование профиля">{ROOT_NAME}</a><!--, у Вас <a href="#messages" rel="modal" title="3 сообщения">3 сообщения</a>--><br />
+				Здравствуйте, <a href="system.php?menu=777" title="Редактирование профиля">{ROOT_NAME}</a>,<br>
+				у Вас <a href="#messages" rel="modal" title="3 сообщения">3 сообщения</a><br />
 				<br />
 				<a href="/index.php?exit" title="Выход">Выход</a>
 			</div>
