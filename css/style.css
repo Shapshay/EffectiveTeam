@@ -945,3 +945,140 @@ div.wysiwyg iframe { border: 0; margin: 5px 0 0 0; clear: left; width: 97.5% !im
     font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
 }
+
+.bold{
+    font-weight: bold;
+    color: #f00;
+}
+
+.task_title{
+    padding: 10px 0 20px 0;
+    font-size: 18px;
+    font-family: Verdana;
+    font-weight: bold;
+}
+.task_div{
+    padding: 0 0 15px 0;
+    font-size: 14px;
+    font-family: Verdana;
+}
+.acord_btn{
+    width: 80%;
+    background: #83D991;
+    background-image: -moz-linear-gradient(top, white,#83D991);
+    background-image: -ms-linear-gradient(top, white, #83D991);
+    background-image: -o-linear-gradient( top, white, #83D991);
+    background-image: -webkit-linear-gradient(top, white, #83D991);
+    background-image: linear-gradient(top, white, #83D991);
+    border: 1px solid #DDD;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 0 #9a9a9a;
+    -webkit-box-shadow: 0 1px 0 #9A9A9A;
+    box-shadow: 0 1px 0 #9A9A9A;
+    margin: 0 0 10px;
+    padding: 15px;
+    text-shadow: 0 1px 0 white;
+    position: relative;
+    z-index: 0;
+    font: 20px bold;
+    font-weight: bold;
+    cursor: pointer;
+}
+.acord_btn:hover{
+    background: white;
+    background-image: -moz-linear-gradient(top, #83D991,white);
+    background-image: -ms-linear-gradient(top, #83D991, white);
+    background-image: -o-linear-gradient( top, #83D991, white);
+    background-image: -webkit-linear-gradient(top, #83D991, white);
+    background-image: linear-gradient(top, #83D991, white);
+}
+
+/* CHAT */
+.ChatHistory{
+    width: 400px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 1px solid #459300;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+.speech-bubble-in {
+position: relative;
+background-color: #00A155;
+display: table;
+color: white;
+border-radius: 10px;
+font-family: Verdana;
+font-size: 12px;
+min-height: 40px;
+    min-width: 200px;
+padding: 15px;
+    float: right;
+    margin-top: 3px;
+}
+.speech-bubble-in p{
+display: table-cell;
+vertical-align: middle;
+}
+.speech-bubble-in span{
+    display: table-row;
+    font-family: Verdana;
+    font-size: 10px;
+    text-align: right;
+}
+.speech-bubble-in:after {
+content: '';
+position: absolute;
+width: 0;
+height: 0;
+border: 10px solid;
+}
+.speech-bubble-right:after {
+border-left-color: #00A155;
+left: 100%;
+top: 20px;
+margin-top: -10px;
+}
+
+
+.speech-bubble-out {
+    position: relative;
+    background-color: #8EDC9A;
+    display: table;
+    color: #000;
+    border-radius: 10px;
+    font-family: Verdana;
+    font-size: 12px;
+    min-height: 40px;
+    min-width: 200px;
+    padding: 15px;
+    float: left;
+    margin-top: 3px;
+}
+.speech-bubble-out p{
+    display: table-cell;
+    vertical-align: middle;
+}
+.speech-bubble-out span{
+    display: table-row;
+    font-family: Verdana;
+    font-size: 10px;
+    text-align: right;
+}
+.speech-bubble-out:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid;
+    color: #fff;
+}
+.speech-bubble-left:after {
+border-right-color: #8EDC9A;
+top: 20px;
+right: 100%;
+margin-top: -10px;
+}

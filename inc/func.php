@@ -214,6 +214,12 @@ function SuperSaveGETStr($name) {
 	return $name;
 }
 
+// Простейшая функция склонения слов после числительных
+function plural_form($number, $after) {
+	$cases = array (2, 0, 1, 1, 1, 2);
+	return $number.' '.$after[ ($number%100>4 && $number%100<20)? 2: $cases[min($number%10, 5)] ];
+}
+
 //############### CURL ###########################################
 
 // поиск файлов в папках на сервере

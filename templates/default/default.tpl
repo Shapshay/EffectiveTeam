@@ -40,6 +40,31 @@
     <!-- File Upload -->
     <script language="javascript" type="text/javascript" src="js/ajaxfileupload.js"></script>
 
+    <!-- Galery -->
+    <script src="js/jsibox/jsibox_basic.js"></script>
+
+    <!-- My scripts -->
+    <script src="inc/func.js"></script>
+    <script>
+        $(function(){
+            var timerId2 = setInterval(function() {
+                RefreshMsgs();
+            }, 2000);
+        });
+        function RefreshMsgs() {
+            var u_id = {ROOT_ID};
+            $.post("inc/refreshMsgs.php", {u_id:u_id},
+                    function(data){
+                        //console.log(data);
+                        var obj = jQuery.parseJSON(data);
+                        if(obj.result=='OK'){
+                            $('#my_msg_all').text(obj.html);
+                            $('#my_msg_all').attr("title", obj.html);
+                        }
+                    });
+        }
+    </script>
+
     {AUTH}
 	{META}
 	{META_HTML}
@@ -62,8 +87,8 @@
 
 			<!-- Sidebar Profile links -->
 			<div id="profile-links">
-				Здравствуйте, <a href="system.php?menu=777" title="Редактирование профиля">{ROOT_NAME}</a>,<br>
-				у Вас <a href="#messages" rel="modal" title="3 сообщения">3 сообщения</a><br />
+				Здравствуйте, <a title="{ROOT_NAME}">{ROOT_NAME}</a>,<br>
+				у Вас <a id="my_msg_all" title="{MSG_NUM}">{MSG_NUM}</a><br />
 				<br />
 				<a href="/index.php?exit" title="Выход">Выход</a>
 			</div>
@@ -99,6 +124,8 @@
 		<input type="hidden" id="copy_page" value="0">
 	</div> <!-- End #main-content -->
 
-</div></body>
+</div>
+
+
 </body>
 </html>

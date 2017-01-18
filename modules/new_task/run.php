@@ -31,8 +31,8 @@ if(isset($_POST['d_id'])){
     $msg = 'Задача: '.$_POST['title'];
     $dbc->element_create('msgs',array(
         "t_id" => $t_id,
-        "o_id" => ROOT_ID,
-        "u_id" => $_POST['u_id'],
+        "send_id" => ROOT_ID,
+        "recepient_id" => $_POST['u_id'],
         "msg" => $msg,
         "date" => 'NOW()'
     ));
@@ -72,7 +72,8 @@ foreach($rows as $row){
 }
 
 // users
-$oper_rows='<option value="0">Всем</option>';
+//$oper_rows='<option value="0">Всем</option>';
+$oper_rows='';
 $rows = $dbc->dbselect(array(
         "table"=>"users",
         "select"=>"*",

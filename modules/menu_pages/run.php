@@ -21,19 +21,18 @@ $numRows = $dbc->count;
 if ($numRows > 0) {
     $cur_m = false;
     foreach($rows as $row){
-        
-        
-        if($row['id']==PAGE_ID){
-            $tpl->assign("CUR_MM_MODULES", '  current');
-        }
-        else{
-            $tpl->assign("CUR_MM_MODULES", '');
-        }
-        $url = "/".getItemCHPU($row['id'], 'pages');
-        $tpl->assign("PAGE_M_URL", $url);
-        $tpl->assign("PAGE_M_TITLE", $row['title']);
+        if($rfq->is_permission(ROOT_ID,$row['id'])) {
+            if ($row['id'] == PAGE_ID) {
+                $tpl->assign("CUR_MM_MODULES", '  current');
+            } else {
+                $tpl->assign("CUR_MM_MODULES", '');
+            }
+            $url = "/" . getItemCHPU($row['id'], 'pages');
+            $tpl->assign("PAGE_M_URL", $url);
+            $tpl->assign("PAGE_M_TITLE", $row['title']);
 
-        $tpl->parse("PAGE_ROWS", ".".$moduleName."page_rows");
+            $tpl->parse("PAGE_ROWS", "." . $moduleName . "page_rows");
+        }
     }
     $tpl->parse(strtoupper($moduleName), ".".$moduleName."main");
 }

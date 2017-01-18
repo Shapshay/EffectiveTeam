@@ -70,7 +70,7 @@
     function checkClientForm(){
         var send = true;
         var title = $('#title').val();
-        var description = $('#description').text();
+        var description = $('#description').val();
         if(title==''){
             swal("Ошибка заполнения!", "Заполните Наименование задачи!", "error");
             send = false;
@@ -126,7 +126,6 @@
         </p>
         <p>
             <label>Желаемый результат</label>
-            <div class="hint"></div>
             <textarea name="res_text" id="res_text" rows="10" cols="80" class="text-input small-input"></textarea>
         <div class="hint">Опишите результат, который Вы будете считать выполнением данной задачи</div>
         </p>

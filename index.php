@@ -78,7 +78,7 @@ $tpl->assign("CONTENT", $page_content);
 $tpl->assign("PAGE_ID", $page_id);
 $tpl->assign("BASE_URL", $_SERVER['HTTP_HOST']);
 //$tpl->assign("ROOT_NAME", ROOT_NAME);
-
+$_MSGS = array('сообщение','сообщения','сообщений');
 $_CLOSE_TABLES = array(
 	'acts',
 	'articles',
@@ -128,6 +128,20 @@ else{
 	$tpl->assign("PAGE_TITLE", $page_title);
 }
 
+if(isset($_SESSION['lgn'])){
+	$rows = $dbc->dbselect(array(
+            "table"=>"msgs",
+            "select"=>"COUNT(id) as num_msgs",
+            "where"=>"recepient_id = ".ROOT_ID." AND view = 0",
+            "limit"=>1
+        )
+    );
+    $row = $rows[0];
+    $tpl->assign("MSG_NUM", plural_form($row['num_msgs'], $_MSGS));
+}
+else{
+    $tpl->assign("MSG_NUM", plural_form(0, $_MSGS));
+}
 
 
 $tpl->assign("PAGETEMPLATES_PATH", PAGETEMPLATES_PATH);
