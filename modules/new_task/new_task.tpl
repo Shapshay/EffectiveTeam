@@ -136,6 +136,11 @@
             </select>
         <div class="hint">Внимание! Приоритет задачи НЕ гарантирует ее мгновенное исполнение.<br>Количество задач с повышенной срочностью в месяц от Вас лимитировано.</div>
         </p>
+        <p>
+            <label>Видимость задачи другими сотрудниками</label>
+            <input type="checkbox" id="view" name="view" value="1" checked/> <b>Видна всем </b>
+        <div class="hint">Снимите галочку если в описании задачи содержится конфеденциальная информация для исполнителя.</div>
+        </p>
 
         <p><button type="button" onclick="checkClientForm();" name="edt_s_s" class="button">Отправить</button></p>
 
