@@ -12,7 +12,7 @@ $dbc = new BDFunc;
 date_default_timezone_set ("Asia/Almaty");
 
 if(isset($_POST['d_id'])){
-    $oper_rows='<option value="0">Всем</option>';
+    $oper_rows='<option value="0">Все</option>';
     $rows = $dbc->dbselect(array(
             "table"=>"users",
             "select"=>"*",

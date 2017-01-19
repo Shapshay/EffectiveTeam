@@ -1,7 +1,7 @@
 <h3>Поставленна мне</h3>
 <button type="button" class="acord_btn" onclick="ShowTask();">Задача: {TASK_TITLE}</button>
 <div id="TaskDiv">
-    <div class="task_title"></div>
+    <div class="task_title">{TASK_TITLE}</div>
     <div class="task_div">
         <b>Приоритет:</b> {TASK_PRIOR}
     </div>
