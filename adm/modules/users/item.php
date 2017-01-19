@@ -15,6 +15,8 @@ if(isset($_POST['id'])){
 		$out_row['login'] = $row['login'];
 		$out_row['password'] = $row['password'];
 		$out_row['page_id'] = $row['page_id'];
+		$out_row['email'] = $row['email'];
+		$out_row['phone'] = $row['phone'];
 								
 	}
 	else{

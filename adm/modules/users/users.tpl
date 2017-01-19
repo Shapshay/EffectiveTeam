@@ -50,6 +50,14 @@
 			<label>Имя</label>
 			<input class="text-input medium-input" type="text" id="name" name="name" value="" />
 			</p>
+			<p>
+				<label>E-mail</label>
+				<input class="text-input medium-input" type="text" id="email" name="email" value="" />
+			</p>
+			<p>
+				<label>Телефон</label>
+				<input class="text-input medium-input" type="text" id="phone" name="phone" value="" />
+			</p>
             <p>
 			<label>Логин</label>
 			<input class="text-input medium-input" type="text" id="login" name="login" value="" />

@@ -32,6 +32,8 @@ else{
                     "login" => $_POST['login'],
                     "password" => $_POST['password'],
                     "d_id" => $_POST['d_id'],
+                    "email" => $_POST['email'],
+                    "phone" => $_POST['phone'],
                     "page_id" => $_POST['page_id']));
                 break;
             }
@@ -41,6 +43,8 @@ else{
                     "login" => $_POST['login'],
                     "password" => $_POST['password'],
                     "d_id" => $_POST['d_id'],
+                    "email" => $_POST['email'],
+                    "phone" => $_POST['phone'],
                     "page_id" => $_POST['page_id']));
                 break;
             }
