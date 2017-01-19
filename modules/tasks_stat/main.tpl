@@ -4,6 +4,7 @@
     <p>
         <label>Департамент</label>
         <select name="d_id" id="d_id" class="small-input" onchange="changeDep();">
+            <option value="0">Все</option>
             {U_DEP_ROWS}
         </select>
     </p>

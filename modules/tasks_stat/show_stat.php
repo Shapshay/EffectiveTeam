@@ -19,11 +19,15 @@ function getItemCHPU($id, $item_tab) {
 //////////////////////////////////////////////////////////////////////////////////////
 
 if(isset($_POST['date_start'])){
-    if($_POST['u_id']==0){
-        $add_aql = "tasks.d_id = ".$_POST['d_id'];
+    if($_POST['d_id']!=0) {
+        if ($_POST['u_id'] == 0) {
+            $add_aql = "tasks.d_id = " . $_POST['d_id'].' AND ';
+        } else {
+            $add_aql = "tasks.u_id = " . $_POST['u_id'].' AND ';
+        }
     }
     else{
-        $add_aql = "tasks.u_id = ".$_POST['u_id'];
+        $add_aql = '';
     }
     $html = '';
     $rows = $dbc->dbselect(array(
@@ -37,7 +41,7 @@ if(isset($_POST['date_start'])){
                     LEFT OUTER JOIN users ON tasks.u_id = users.id
                     LEFT OUTER JOIN departaments ON tasks.d_id = departaments.id
                     LEFT OUTER JOIN statuses ON tasks.status = statuses.id",
-            "where"=>$add_aql." AND 
+            "where"=>$add_aql."
                     DATE_FORMAT(tasks.date_create,'%Y%m%d')>='".date("Ymd",strtotime($_POST['date_start']))."' AND 
                     DATE_FORMAT(tasks.date_create,'%Y%m%d')<='".date("Ymd",strtotime($_POST['date_end']))."'",
             "order"=>"prior_id DESC, date_create ASC"

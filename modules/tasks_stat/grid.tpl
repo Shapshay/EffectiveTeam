@@ -33,18 +33,20 @@
 <script>
 function changeDep(){
     var d_id = $('#d_id option:selected').val();
-    $('#u_id').html('');
-    $.post("modules/tasks_stat/change_dep.php", {d_id: d_id},
-            function(data){
-                var obj = jQuery.parseJSON(data);
-                if(obj.result=='OK'){
-                    $('#u_id').html(obj.html);
-                }
-                else{
-                    swal("Ошибка Сервера!", "Сбой записи !", "error");
-                }
+    if(d_id!=0&&d_id!='0') {
+        $('#u_id').html('');
+        $.post("modules/tasks_stat/change_dep.php", {d_id: d_id},
+                function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj.result == 'OK') {
+                        $('#u_id').html(obj.html);
+                    }
+                    else {
+                        swal("Ошибка Сервера!", "Сбой записи !", "error");
+                    }
 
-            });
+                });
+    }
 }
 function ShowStatTable(){
 	var u_id = $('#u_id option:selected').val();
