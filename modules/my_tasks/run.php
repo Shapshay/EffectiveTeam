@@ -23,6 +23,8 @@ if(isset($_GET['item'])){
             "status"=>6,
             "date_close"=>'NOW()'
         ));
+        $sql = "UPDATE msgs SET view = 1 WHERE t_id = ".$_GET['item'];
+        $dbc->element_free_update($sql);
         header("Location: /".getItemCHPU($_GET['menu'], 'pages'));
         exit;
     }
