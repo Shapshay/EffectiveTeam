@@ -40,7 +40,7 @@
             </p>
 
 
-            <p><button type="submit" name="edt_s_s" class="button">Сохранить</button></p>
+            <p><button type="submit" name="edt_s_s" class="button">Принять задачу</button></p>
 
         </fieldset>
 
