@@ -3,10 +3,32 @@
 <script type="text/javascript" src="adm/inc/will_pickdate/will_pickdate.js"></script>
 <script type="text/javascript">
     $(function(){
+        $('#date_start').will_pickdate({
+            format: 'd-m-Y',
+            inputOutputFormat: 'd-m-Y',
+            days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг','Пятница', 'Суббота'],
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            timePicker: false,
+            timePickerOnly: false,
+            militaryTime: false,
+            allowEmpty:true ,
+            yearsPerPage:10
+        });
+        $('#date_end').will_pickdate({
+            format: 'd-m-Y',
+            inputOutputFormat: 'd-m-Y',
+            days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг','Пятница', 'Суббота'],
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            timePicker: false,
+            timePickerOnly: false,
+            militaryTime: false,
+            allowEmpty:true ,
+            yearsPerPage:10
+        });
         $('#date_to_end').will_pickdate({
             format: 'd-m-Y',
             inputOutputFormat: 'd-m-Y',
-            days: ['Понедельник', 'Вторник', 'Среда', 'Четверг','Пятница', 'Суббота', 'Воскресенье'],
+            days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг','Пятница', 'Суббота'],
             months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
             timePicker: false,
             timePickerOnly: false,
@@ -131,6 +153,7 @@
             <textarea name="res_text" id="res_text" rows="10" cols="80" class="text-input small-input"></textarea>
         <div class="hint">Опишите результат, который Вы будете считать выполнением данной задачи</div>
         </p>
+        {ADM_SROK}
         <p>
             <label>Приоритет задачи</label>
             <select name="prior_id" id="prior_id" class="small-input">

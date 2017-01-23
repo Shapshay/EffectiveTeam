@@ -7,6 +7,7 @@ $tpl->define(array(
         $moduleName . "view" => $prefix . "view.tpl",
         $moduleName . "client_row" => $prefix . "client_row.tpl",
         $moduleName . "u_dep_row" => $prefix . "u_dep_row.tpl",
+        $moduleName . "adm_srok" => $prefix . "adm_srok.tpl",
 	));
 
 # MAIN ##################################################################################
@@ -14,19 +15,38 @@ $tpl->define(array(
 
 // создание задачи
 if(isset($_POST['d_id'])){
+    if(!in_array(1,$USER_ROLE)){
+        $dbc->element_create('tasks',array(
+            "order_id" => ROOT_ID,
+            "d_id" => $_POST['d_id'],
+            "u_id" => $_POST['u_id'],
+            "title" => $_POST['title'],
+            "description" => nl2br($_POST['description']),
+            "res_text" => nl2br($_POST['res_text']),
+            "prior_id" => $_POST['prior_id'],
+            "status" => 1,
+            "new_msg" => 1,
+            "date_create" => 'NOW()'
+        ));
+    }
+    else{
+        $dbc->element_create('tasks',array(
+            "order_id" => ROOT_ID,
+            "d_id" => $_POST['d_id'],
+            "u_id" => $_POST['u_id'],
+            "title" => $_POST['title'],
+            "description" => nl2br($_POST['description']),
+            "res_text" => nl2br($_POST['res_text']),
+            "prior_id" => $_POST['prior_id'],
+            "date_start"=>date("Y-m-d H:i", strtotime($_POST['date_start'])),
+            "date_end"=>date("Y-m-d H:i", strtotime($_POST['date_end'])),
+            "status" => 1,
+            "new_msg" => 1,
+            "adm_task" => 1,
+            "date_create" => 'NOW()'
+        ));
+    }
 
-    $dbc->element_create('tasks',array(
-        "order_id" => ROOT_ID,
-        "d_id" => $_POST['d_id'],
-        "u_id" => $_POST['u_id'],
-        "title" => $_POST['title'],
-        "description" => nl2br($_POST['description']),
-        "res_text" => nl2br($_POST['res_text']),
-        "prior_id" => $_POST['prior_id'],
-        "status" => 1,
-        "new_msg" => 1,
-        "date_create" => 'NOW()'
-    ));
     $t_id = $dbc->ins_id;
     $msg = 'Задача: '.$_POST['title'];
     $dbc->element_create('msgs',array(
@@ -98,6 +118,13 @@ foreach($rows as $row){
     $prior_rows.='<option value="'.$row['id'].'">'.$row['title'].'</option>';
 }
 $tpl->assign("PRIOR_ROWS", $prior_rows);
+
+if(!in_array(1,$USER_ROLE)){
+    $tpl->assign("ADM_SROK", '');
+}
+else{
+    $tpl->parse("ADM_SROK", ".".$moduleName."adm_srok");
+}
 
 $tpl->parse(strtoupper($moduleName), $moduleName);
 

@@ -11,6 +11,7 @@ $tpl->define(array(
 		$moduleName . "task_row" => $prefix . "task_row.tpl",
 	    $moduleName . "task_row2" => $prefix . "task_row2.tpl",
         $moduleName . "start_form" => $prefix . "start_form.tpl",
+        $moduleName . "adm_start_form" => $prefix . "adm_start_form.tpl",
         $moduleName . "end_form" => $prefix . "end_form.tpl",
         $moduleName . "close_form" => $prefix . "close_form.tpl",
 ));
@@ -33,6 +34,23 @@ if(isset($_GET['item'])){
                 "date_view"=>'NOW()',
                 "status"=>2
             ));
+        $msg = 'Задача принята в обработку.';
+        $dbc->element_create('msgs',array(
+            "t_id" => $_GET['item'],
+            "send_id" => ROOT_ID,
+            "recepient_id" => $_POST['o_id'],
+            "msg" => $msg,
+            "date" => 'NOW()'
+        ));
+        header("Location: /".getItemCHPU($_GET['menu'], 'pages').'/?item='.$_GET['item']);
+        exit;
+    }
+
+    if(isset($_POST['adm_start'])){
+        $dbc->element_update('tasks', $_GET['item'],array(
+            "date_view"=>'NOW()',
+            "status"=>2
+        ));
         $msg = 'Задача принята в обработку.';
         $dbc->element_create('msgs',array(
             "t_id" => $_GET['item'],
@@ -98,7 +116,12 @@ if(isset($_GET['item'])){
             $tpl->parse("START_END_FORM", ".".$moduleName."end_form");
         }
         else{
-            $tpl->parse("START_END_FORM", ".".$moduleName."start_form");
+            if($row['adm_task']==1){
+                $tpl->parse("START_END_FORM", ".".$moduleName."adm_start_form");
+            }
+            else{
+                $tpl->parse("START_END_FORM", ".".$moduleName."start_form");
+            }
         }
         if($row['date_start']!='0000-00-00 00:00:00'){
             $task_history.= '<b>Дата начала работ:</b> '.date("d.m.Y H:i:s", strtotime($row['date_start'])).'<br>';
