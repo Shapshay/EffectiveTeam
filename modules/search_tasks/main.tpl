@@ -1,3 +1,6 @@
+<div class="clear"></div>
+<div id="words_cloud" style="width:600px; height:400px; border: 1px solid #ccc;"></div>
+<div class="clear"></div>
 <form method="post" enctype="multipart/form-data" name="s_s" id="SearchForm">
     <fieldset>
 <p>

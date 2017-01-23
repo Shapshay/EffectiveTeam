@@ -47,7 +47,7 @@
                 var form_carousel = document.getElementById("form_carousel");
 
                 images.value = images.value + data.src2 + ':' + data.src1 +';';
-                var close_btn = '<div class="img_close_btn" title="Удалить" onclick="DelUpImg(\'UpImg'+imgUpcount+'\');">&times;</div>';
+                var close_btn = '<div class="img_close_btn" title="Удалить" onclick="DelUpImg(\'UpImg'+imgUpcount+'\', \''+data.src2 + ':' + data.src1+';\');">&times;</div>';
                 form_carousel.innerHTML += '<div id="UpImg'+imgUpcount+'" style="float: left;">'+
                         close_btn+
                         '<img src="'+ data.src2 +'" style="margin: 0px 2px 2px 0px; float: left; height: 50px">'+
@@ -63,8 +63,10 @@
     }
 
 
-    function DelUpImg(btn) {
+    function DelUpImg(btn, txt) {
         $('#'+btn).hide();
+        var images = document.getElementById("images");
+        images.value = images.value.replace(txt,"");
     }
 
     function checkClientForm(){

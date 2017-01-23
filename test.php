@@ -172,9 +172,11 @@ if($IBAnswer->result=='OK'){
 */
 //echo md5("weber@jXwVW");
 //echo md5("2");
-$id_1 = uniqid();
-echo $id_1;
+//$id_1 = uniqid();
+//echo $id_1;
+phpinfo();
 ?>
+<!--
 <script>
     var field_num = 1;
     $(function(){
@@ -227,3 +229,4 @@ echo $id_1;
     </table>
     <p><button class="button" onclick="CreateTable();">Создать таблицу</button></p>
 </form>
+-->

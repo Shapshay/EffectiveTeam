@@ -58,6 +58,19 @@ else{
 	$tpl->assign("SEARCH_SHOW", '');
 }
 
+$words_cloud = '';
+$rows2 = $dbc->dbselect(array(
+        "table"=>"word_cloud",
+        "select"=>"*",
+        "order" => "num DESC",
+        "limit" => 50
+    )
+);
+foreach ($rows2 as $row2) {
+    $words_cloud.= '{text: "'.$row2['word'].'", weight: '.$row2['num'].', link:{href:"javascript:CloudSearch(\''.$row2['word'].'\');", target:"_self"} },';
+}
+$tpl->assign("WORDS_CLOUD", $words_cloud);
+
 $tpl->parse("META_HTML", ".".$moduleName."html");
 $tpl->parse(strtoupper($moduleName), ".".$moduleName."main");
 ?>

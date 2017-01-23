@@ -43,6 +43,10 @@
     <!-- Galery -->
     <script src="js/jsibox/jsibox_basic.js"></script>
 
+	<!-- Words Cloud -->
+    <link rel="stylesheet" type="text/css" href="js/jqcloud/jqcloud.css" />
+	<script src="js/jqcloud/jqcloud-1.0.0.js"></script>
+
     <!-- My scripts -->
     <script src="inc/func.js"></script>
     <script>

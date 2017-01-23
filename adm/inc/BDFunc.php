@@ -54,7 +54,7 @@ class BDfunc
 	//constructor, create connection
 	public function __construct()
 	{
-		$xml_patch = 'http://'.$_SERVER['SERVER_NAME'].'/adm/inc/config.xml';
+		$xml_patch = '/var/www/html/adm/inc/config.xml';
 		$xml = simplexml_load_file($xml_patch);
 		$server_name=trim($xml->bd_config->server_name);
 		$user_name=trim($xml->bd_config->user_name);
