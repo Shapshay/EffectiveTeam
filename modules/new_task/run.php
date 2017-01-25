@@ -14,7 +14,7 @@ $tpl->define(array(
 
 
 // создание задачи
-if(isset($_POST['d_id'])){
+if(isset($_POST['d_id'])&&isset($_SESSION['lgn'])){
     if(!in_array(1,$USER_ROLE)){
         $dbc->element_create('tasks',array(
             "order_id" => ROOT_ID,

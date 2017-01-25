@@ -21,7 +21,7 @@ function getItemCHPU($id, $item_tab) {
 if(isset($_POST['date_start'])){
     $add_aql = "tasks.".$_POST['type_id']." = ".$_POST['u_id'].' AND ';
     if ($_POST['status'] != 0) {
-        $add_aql = "tasks.status = ".$_POST['status'].' AND ';
+        $add_aql.= "tasks.status = ".$_POST['status'].' AND ';
     }
     
     $html = '';
