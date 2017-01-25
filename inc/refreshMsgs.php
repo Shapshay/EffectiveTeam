@@ -30,6 +30,7 @@ if(isset($_POST['u_id'])){
     );
     $row = $rows[0];
     $msgs = plural_form($row['num_msgs'], $_MSGS);
+    $out_row['num'] = $row['num_msgs'];
     $out_row['html'] = $msgs;
     $out_row['result'] = 'OK';
 }

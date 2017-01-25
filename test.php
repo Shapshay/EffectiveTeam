@@ -174,7 +174,7 @@ if($IBAnswer->result=='OK'){
 //echo md5("2");
 //$id_1 = uniqid();
 //echo $id_1;
-phpinfo();
+//phpinfo();
 ?>
 <!--
 <script>
@@ -230,3 +230,34 @@ phpinfo();
     <p><button class="button" onclick="CreateTable();">Создать таблицу</button></p>
 </form>
 -->
+<script>
+var w = 0;
+var titles = new Array("Мой основной заголовок","***** Новое сообщение в online-помощнике *****");
+
+function recountNew(){
+    $('#recountdiv').load('includes/recountnewevents.php',function(){
+        if(elem('newmesh') && elem('howmes')){
+            if(elem('newmesh').value>0){
+                elem('howmes').innerHTML = "<b>"+elem('newmesh').value+"</b>";
+            }else{
+                elem('howmes').innerHTML = "0";
+            }
+        }
+    });
+}
+
+
+function animTitle(){
+    if(elem('newmesh').value > 0){
+        document.title = titles[w];
+        w++;
+        if(w == titles.length){w = 0;}
+    }else{
+        document.title = titles[0];
+    }
+}
+
+recountNew();
+setInterval(function(){animTitle()},1000);
+setInterval(function(){recountNew()},5000);
+</script>

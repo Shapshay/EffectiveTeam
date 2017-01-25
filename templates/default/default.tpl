@@ -47,6 +47,9 @@
     <link rel="stylesheet" type="text/css" href="js/jqcloud/jqcloud.css" />
 	<script src="js/jqcloud/jqcloud-1.0.0.js"></script>
 
+    <!-- Blink Title -->
+    <script src="js/blinkTitle.js"></script>
+
     <!-- My scripts -->
     <script src="inc/func.js"></script>
     <script>
@@ -64,6 +67,13 @@
                         if(obj.result=='OK'){
                             $('#my_msg_all').text(obj.html);
                             $('#my_msg_all').attr("title", obj.html);
+                            if(obj.num>0){
+                                blinkTitle(obj.html,"{META_TITLE_JS}",500);
+                            }
+                            else{
+                                blinkTitleStop();
+                                document.title = "{META_TITLE_JS}";
+                            }
                         }
                     });
         }

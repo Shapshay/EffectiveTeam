@@ -43,7 +43,7 @@
 	else{
 		$item = 0;
 	}
-	
+	$tpl->assign("META_TITLE_JS", $meta_title);
 	$meta = '<title>'.$meta_title.'</title>
 		<meta content="'.$meta_key.'" name="keywords">
 		<meta content="'.$meta_content.'" name="description">
