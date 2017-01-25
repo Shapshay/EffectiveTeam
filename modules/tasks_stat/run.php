@@ -43,7 +43,6 @@ if(!isset($_GET['item'])){
     $rows = $dbc->dbselect(array(
             "table"=>"users",
             "select"=>"*",
-            "where"=>"users.d_id = ".$cur_d,
             "order"=>"users.name"
         )
     );
@@ -51,6 +50,18 @@ if(!isset($_GET['item'])){
         $oper_rows.='<option value="'.$row['id'].'">'.$row['name'].'</option>';
     }
     $tpl->assign("U_ROWS", $oper_rows);
+
+    // statuses
+    $stat_rows='<option value="0">Все</option>';
+    $rows = $dbc->dbselect(array(
+            "table"=>"statuses",
+            "select"=>"*"
+        )
+    );
+    foreach($rows as $row){
+        $stat_rows.='<option value="'.$row['id'].'">'.$row['title'].'</option>';
+    }
+    $tpl->assign("STATUS_ROWS", $stat_rows);
 
     $tpl->parse("META_HTML", ".".$moduleName."grid");
 

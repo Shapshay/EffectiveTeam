@@ -17,17 +17,24 @@ function getItemCHPU($id, $item_tab) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
-
+$add_sql = '';
+$add2_sql = '';
 if(isset($_POST['date_start'])){
     if($_POST['d_id']!=0) {
         if ($_POST['u_id'] == 0) {
-            $add_aql = "tasks.d_id = " . $_POST['d_id'].' AND ';
+            $add_sql.= "tasks.d_id = " . $_POST['d_id'].' AND ';
         } else {
-            $add_aql = "tasks.u_id = " . $_POST['u_id'].' AND ';
+            $add_sql.= "tasks.u_id = " . $_POST['u_id'].' AND ';
         }
     }
     else{
-        $add_aql = '';
+        if ($_POST['u_id'] != 0) {
+            $add_sql.= "tasks.u_id = " . $_POST['u_id'].' AND ';
+        }
+    }
+
+    if($_POST['status']!=0) {
+        $add_sql.= "tasks.status = " . $_POST['status'].' AND ';
     }
     $html = '';
     $rows = $dbc->dbselect(array(
@@ -41,7 +48,7 @@ if(isset($_POST['date_start'])){
                     LEFT OUTER JOIN users ON tasks.u_id = users.id
                     LEFT OUTER JOIN departaments ON tasks.d_id = departaments.id
                     LEFT OUTER JOIN statuses ON tasks.status = statuses.id",
-            "where"=>$add_aql."
+            "where"=>$add_sql."
                     DATE_FORMAT(tasks.date_create,'%Y%m%d')>='".date("Ymd",strtotime($_POST['date_start']))."' AND 
                     DATE_FORMAT(tasks.date_create,'%Y%m%d')<='".date("Ymd",strtotime($_POST['date_end']))."'",
             "order"=>"prior_id DESC, date_create ASC"
@@ -50,30 +57,46 @@ if(isset($_POST['date_start'])){
     $sql = $dbc->outsql;
     $numRows = $dbc->count;
     if ($numRows > 0) {
+        if($_POST['d2_id']!=0) {
+            if ($_POST['u2_id'] == 0) {
+                $add2_sql.= " AND users.d_id = " . $_POST['d2_id'];
+            } else {
+                $add2_sql.= " AND users.id = " . $_POST['u2_id'];
+            }
+        }
+        else{
+            if ($_POST['u2_id'] != 0) {
+                $add2_sql.= " AND users.id = " . $_POST['u2_id'];
+            }
+        }
         foreach ($rows as $row) {
             $rows2 = $dbc->dbselect(array(
                     "table"=>"users",
                     "select"=>"users.name as ord, 
                                 departaments.title as dep",
                     "joins"=>"LEFT OUTER JOIN departaments ON users.d_id = departaments.id",
-                    "where"=>"users.id = ".$row['order_id'],
+                    "where"=>"users.id = ".$row['order_id'].$add2_sql,
                     "limit"=>1
                 )
             );
-            $row2 = $rows2[0];
-            $html.= '<tr>
-                    <td>'.date("d-m-Y H:i", strtotime($row['date_create'])).'</td>
-                    <td>'.$row['prior'].'</td>
-                    <td>'.$row['title'].'</td>
-                    <td>'.$row2['dep'].'</td>
-                    <td>'.$row2['ord'].'</td>
-                    <td>'.$row['dep'].'</td>
-                    <td>'.$row['user'].'</td>
-                    <td>'.$row['stat_text'].'</td>
-                    <td>'.date("d-m-Y", strtotime($row['date_start'])).'</td>
-                    <td>'.date("d-m-Y", strtotime($row['date_end'])).'</td>
-                    <td><a href="/otchet_po_zadacham/?item='.$row['id'].'" title="Edit"><img src="images/pencil.png" alt="Edit" /></a></td>
+            $numRows2 = $dbc->count; 
+            $sql = $dbc->outsql;
+            if ($numRows2 > 0) {
+                $row2 = $rows2[0];
+                $html .= '<tr>
+                    <td>' . date("d-m-Y H:i", strtotime($row['date_create'])) . '</td>
+                    <td>' . $row['prior'] . '</td>
+                    <td>' . $row['title'] . '</td>
+                    <td>' . $row2['dep'] . '</td>
+                    <td>' . $row2['ord'] . '</td>
+                    <td>' . $row['dep'] . '</td>
+                    <td>' . $row['user'] . '</td>
+                    <td>' . $row['stat_text'] . '</td>
+                    <td>' . date("d-m-Y", strtotime($row['date_start'])) . '</td>
+                    <td>' . date("d-m-Y", strtotime($row['date_end'])) . '</td>
+                    <td><a href="/otchet_po_zadacham/?item=' . $row['id'] . '" title="Edit"><img src="images/pencil.png" alt="Edit" /></a></td>
                     </tr>';
+            }
         }
     }
 

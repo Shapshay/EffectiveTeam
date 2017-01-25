@@ -2,16 +2,35 @@
     <p>
         <form method="post" name="s_s">
     <p>
-        <label>Департамент</label>
+        <label>Департамент исполнителя</label>
         <select name="d_id" id="d_id" class="small-input" onchange="changeDep();">
             <option value="0">Все</option>
             {U_DEP_ROWS}
         </select>
     </p>
     <p>
-        <label>Сотрудники</label>
+        <label>Исполнитель</label>
         <select name="u_id" id="u_id" class="small-input">
             {U_ROWS}
+        </select>
+    </p>
+    <p>
+        <label>Департамент постановщика</label>
+        <select name="d2_id" id="d2_id" class="small-input" onchange="changeDep2();">
+            <option value="0">Все</option>
+            {U_DEP_ROWS}
+        </select>
+    </p>
+    <p>
+        <label>Постановщик</label>
+        <select name="u2_id" id="u2_id" class="small-input">
+            {U_ROWS}
+        </select>
+    </p>
+    <p>
+        <label>Статус</label>
+        <select name="status" id="status" class="small-input">
+            {STATUS_ROWS}
         </select>
     </p>
     <p><strong>Дата начала статистики</strong><br>
