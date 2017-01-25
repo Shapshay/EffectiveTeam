@@ -236,6 +236,7 @@ public function table_create_uniq_index($tab_name,$ind_name,$field1="",$field2="
 			}
 		}
 		$sql="UPDATE ".$tab_name." SET ".$conditions." WHERE id=".$id;
+		$this->outsql=$sql;
 		if ($conn->query($sql)) {
 			$this->status="Element updated successfully";    	
 		}	else {

@@ -44,15 +44,16 @@ if(isset($_GET['item'])){
             "msg" => $msg,
             "date" => 'NOW()'
         ));
-        header("Location: /".getItemCHPU($_GET['menu'], 'pages').'/?item='.$_GET['item']);
+        header("Location: /".getItemCHPU($_GET['menu'], 'pages').'/?item='.$_GET['item'].'&type='.$_GET['type']);
         exit;
     }
 
     if(isset($_POST['adm_start'])){
         $dbc->element_update('tasks', $_GET['item'],array(
-            "date_view"=>'NOW()',
-            "status"=>2
+            "status"=>2,
+            "date_view"=>'NOW()'
         ));
+        //echo $dbc->outsql."***";
         $msg = 'Задача принята в обработку.';
         $dbc->element_create('msgs',array(
             "t_id" => $_GET['item'],
@@ -61,7 +62,8 @@ if(isset($_GET['item'])){
             "msg" => $msg,
             "date" => 'NOW()'
         ));
-        header("Location: /".getItemCHPU($_GET['menu'], 'pages').'/?item='.$_GET['item']);
+        //echo $dbc->outsql."***";
+        header("Location: /".getItemCHPU($_GET['menu'], 'pages').'/?item='.$_GET['item'].'&type='.$_GET['type']);
         exit;
     }
 
@@ -101,7 +103,7 @@ if(isset($_GET['item'])){
     $row = $rows[0];
     
     // my_task
-    if($row['u_id']==ROOT_ID){
+    if($row['u_id']==ROOT_ID&&$_GET['type']==1){
         $tpl->assign("TASK_ID", $row['id']);
         $tpl->assign("TASK_DATE", date("d.m.Y H:i:s", strtotime($row['date_create'])));
         $tpl->assign("TASK_PRIOR", $row['prior']);
@@ -191,6 +193,9 @@ if(isset($_GET['item'])){
                             <p>'.$row['msg'].'</p>
                         </div>
                         <div class="clear"></div>';
+                    if($row['recepient_id']==ROOT_ID){
+                        $dbc->element_update('msgs',$row['id'],array("view"=>1));
+                    }
                 }
                 else{
                     $msgs.= '<div class="speech-bubble-in speech-bubble-right">
@@ -281,6 +286,9 @@ if(isset($_GET['item'])){
                             <p>'.$row['msg'].'</p>
                         </div>
                         <div class="clear"></div>';
+                    if($row['recepient_id']==ROOT_ID){
+                        $dbc->element_update('msgs',$row['id'],array("view"=>1));
+                    }
                 }
                 else{
                     $msgs.= '<div class="speech-bubble-in speech-bubble-right">
@@ -329,8 +337,7 @@ else{
             $tpl->assign("TASK_PRIOR", $row['prior']);
             $tpl->assign("TASK_TITLE", $row['title']);
             $tpl->assign("TASK_STATUS", $row['stat_text']);
-            $task_url = getItemCHPU($_GET['menu'], 'pages')."/?item=".$row['id'];
-            $task_url = getCodeBaseURL($task_url);
+
             if($row['status']!=1){
                 $tpl->assign("TASK_DATE_START", date("d.m.Y H:i", strtotime($row['date_start'])));
                 $tpl->assign("TASK_DATE_END", date("d.m.Y H:i", strtotime($row['date_end'])));
@@ -339,7 +346,7 @@ else{
                 $tpl->assign("TASK_DATE_START", '---');
                 $tpl->assign("TASK_DATE_END", '---');
             }
-            $tpl->assign("TASK_URL", $task_url);
+
 
             $rows2 = $dbc->dbselect(array(
                     "table"=>"msgs",
@@ -356,30 +363,53 @@ else{
                 $tpl->assign("TASK_CLASS", '');
             }
 
-            if($row['u_id']==ROOT_ID){
-                $rows2 = $dbc->dbselect(array(
-                        "table"=>"users",
-                        "select"=>"users.name as ord, 
-                                departaments.title as dep",
-                        "joins"=>"LEFT OUTER JOIN departaments ON users.d_id = departaments.id",
-                        "where"=>"users.id = ".$row['order_id'],
-                        "limit"=>1
-                    )
-                );
-                $row2 = $rows2[0];
-                $tpl->assign("TASK_DEP", $row2['dep']);
-                $tpl->assign("TASK_ORDER", $row2['ord']);
-
-                $tpl->parse("TASK1_ROWS", ".".$moduleName."task_row");
-                $i++;
-            }
-            else{
+            if($row['u_id']==ROOT_ID&&$row['order_id']==ROOT_ID){
                 $tpl->assign("TASK_DEP", $row['dep']);
                 $tpl->assign("TASK_ORDER", $row['user']);
-
+                $task_url = getItemCHPU($_GET['menu'], 'pages')."/?item=".$row['id']."&type=1";
+                //$task_url = getCodeBaseURL($task_url);
+                $tpl->assign("TASK_URL", $task_url);
+                $tpl->parse("TASK1_ROWS", ".".$moduleName."task_row");
+                $task_url = getItemCHPU($_GET['menu'], 'pages')."/?item=".$row['id']."&type=2";
+                //$task_url = getCodeBaseURL($task_url);
+                $tpl->assign("TASK_URL", $task_url);
                 $tpl->parse("TASK2_ROWS", ".".$moduleName."task_row2");
+                $i++;
                 $j++;
             }
+            else{
+                if($row['u_id']==ROOT_ID){
+                    $rows2 = $dbc->dbselect(array(
+                            "table"=>"users",
+                            "select"=>"users.name as ord, 
+                                departaments.title as dep",
+                            "joins"=>"LEFT OUTER JOIN departaments ON users.d_id = departaments.id",
+                            "where"=>"users.id = ".$row['order_id'],
+                            "limit"=>1
+                        )
+                    );
+                    $row2 = $rows2[0];
+                    $tpl->assign("TASK_DEP", $row2['dep']);
+                    $tpl->assign("TASK_ORDER", $row2['ord']);
+                    $task_url = getItemCHPU($_GET['menu'], 'pages')."/?item=".$row['id']."&type=1";
+                    //$task_url = getCodeBaseURL($task_url);
+                    $tpl->assign("TASK_URL", $task_url);
+
+                    $tpl->parse("TASK1_ROWS", ".".$moduleName."task_row");
+                    $i++;
+                }
+                else{
+                    $tpl->assign("TASK_DEP", $row['dep']);
+                    $tpl->assign("TASK_ORDER", $row['user']);
+                    $task_url = getItemCHPU($_GET['menu'], 'pages')."/?item=".$row['id']."&type=2";
+                    //$task_url = getCodeBaseURL($task_url);
+                    $tpl->assign("TASK_URL", $task_url);
+
+                    $tpl->parse("TASK2_ROWS", ".".$moduleName."task_row2");
+                    $j++;
+                }
+            }
+
 		}
 
         $tpl->assign("TASK1_NUM", $i);
