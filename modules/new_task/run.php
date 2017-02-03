@@ -125,7 +125,7 @@ if(!in_array(1,$USER_ROLE)){
 else{
     $tpl->parse("ADM_SROK", ".".$moduleName."adm_srok");
 }
-
+$tpl->assign("META_HTML", '');
 $tpl->parse(strtoupper($moduleName), $moduleName);
 
 ?>
