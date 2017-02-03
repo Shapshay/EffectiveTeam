@@ -425,8 +425,6 @@ else{
 	else{
 		$tpl->assign("TASK1_ROWS", '');
         $tpl->assign("TASK2_ROWS", '');
-        $tpl->assign("TASK1_NUM", 0);
-        $tpl->assign("TASK2_NUM", 0);
 	}
     $tpl->parse("META_HTML", ".".$moduleName."html2");
 	$tpl->parse(strtoupper($moduleName), $moduleName);

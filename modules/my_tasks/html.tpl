@@ -5,6 +5,7 @@ $(function(){
     var timerId = setInterval(function() {
         RefreshChat();
     }, 2000);
+
 });
 </script>
 <script>
@@ -92,4 +93,6 @@ function ChatScreenLoad(){
         }
     });
 }
+
+
 </script>
