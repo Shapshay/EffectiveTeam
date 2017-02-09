@@ -4,7 +4,7 @@
     <td>{TASK_TITLE}</td>
     <td>{TASK_DEP}</td>
     <td>{TASK_ORDER}</td>
-    <td>{TASK_STATUS}</td>
+    <td style="color: {STATUS_COLOR};">{TASK_STATUS}</td>
     <td>{TASK_DATE_START}</td>
     <td>{TASK_DATE_END}</td>
     <td>

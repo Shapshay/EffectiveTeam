@@ -77,6 +77,25 @@ if(isset($_POST['u_id'])){
                 $TASK_CLASS = '';
             }
 
+            // цветовая дифференциация штанов
+            switch ($row['status']){
+                case 1:
+                    $status_color = '#f00';
+                    break;
+                case 2:
+                    $status_color = '#F08741';
+                    break;
+                case 3:
+                    $status_color = '#F08741';
+                    break;
+                case 4:
+                    $status_color = '#13A503';
+                    break;
+                default:
+                    $status_color = '#000';
+                    break;
+            }
+
             if($row['u_id']==$_POST['u_id']&&$row['order_id']==$_POST['u_id']){
                 $TASK_DEP = $row['dep'];
                 $TASK_ORDER = $row['user'];
@@ -87,7 +106,7 @@ if(isset($_POST['u_id'])){
                     <td>'.$TASK_TITLE.'</td>
                     <td>'.$TASK_DEP.'</td>
                     <td>'.$TASK_ORDER.'</td>
-                    <td>'.$TASK_STATUS.'</td>
+                    <td style="color: '.$status_color.';">'.$TASK_STATUS.'</td>
                     <td>'.$TASK_DATE_START.'</td>
                     <td>'.$TASK_DATE_END.'</td>
                     <td>
@@ -101,7 +120,7 @@ if(isset($_POST['u_id'])){
                         <td>'.$TASK_TITLE.'</td>
                         <td>'.$TASK_DEP.'</td>
                         <td>'.$TASK_ORDER.'</td>
-                        <td>'.$TASK_STATUS.'</td>
+                        <td style="color: '.$status_color.';">'.$TASK_STATUS.'</td>
                         <td>'.$TASK_DATE_START.'</td>
                         <td>'.$TASK_DATE_END.'</td>
                         <td>
@@ -133,7 +152,7 @@ if(isset($_POST['u_id'])){
                             <td>'.$TASK_TITLE.'</td>
                             <td>'.$TASK_DEP.'</td>
                             <td>'.$TASK_ORDER.'</td>
-                            <td>'.$TASK_STATUS.'</td>
+                            <td style="color: '.$status_color.';">'.$TASK_STATUS.'</td>
                             <td>'.$TASK_DATE_START.'</td>
                             <td>'.$TASK_DATE_END.'</td>
                             <td>
@@ -153,7 +172,7 @@ if(isset($_POST['u_id'])){
                             <td>'.$TASK_TITLE.'</td>
                             <td>'.$TASK_DEP.'</td>
                             <td>'.$TASK_ORDER.'</td>
-                            <td>'.$TASK_STATUS.'</td>
+                            <td style="color: '.$status_color.';">'.$TASK_STATUS.'</td>
                             <td>'.$TASK_DATE_START.'</td>
                             <td>'.$TASK_DATE_END.'</td>
                             <td>

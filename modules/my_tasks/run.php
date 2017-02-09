@@ -347,6 +347,25 @@ else{
                 $tpl->assign("TASK_DATE_END", '---');
             }
 
+            // цветовая дифференциация штанов
+            switch ($row['status']){
+                case 1:
+                    $status_color = '#f00';
+                    break;
+                case 2:
+                    $status_color = '#F08741';
+                    break;
+                case 3:
+                    $status_color = '#F08741';
+                    break;
+                case 4:
+                    $status_color = '#13A503';
+                    break;
+                default:
+                    $status_color = '#000';
+                    break;
+            }
+            $tpl->assign("STATUS_COLOR", $status_color);
 
             $rows2 = $dbc->dbselect(array(
                     "table"=>"msgs",
